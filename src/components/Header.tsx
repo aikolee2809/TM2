@@ -61,6 +61,10 @@ export default function Header() {
                 <span className="absolute -bottom-1.5 left-0 w-0 h-px bg-[#FBC775] group-hover:w-full transition-all duration-400 ease-out" />
               </a>
             ))}
+          </nav>
+
+          {/* Right: phone and CTA */}
+          <div className="hidden lg:flex items-center gap-4 justify-self-end">
             <a
               href="tel:0398519485"
               className="flex items-center gap-2 font-sans text-sm text-white hover:text-[#FBC775] focus:text-[#FBC775] active:text-[#FBC775] transition-colors duration-200"
@@ -68,10 +72,6 @@ export default function Header() {
               <Phone className="w-4 h-4" />
               <span className="font-medium">0398519485</span>
             </a>
-          </nav>
-
-          {/* Right: CTA button */}
-          <div className="hidden lg:block justify-self-end">
             <a
               href="https://zalo.me/0398519485"
               target="_blank"

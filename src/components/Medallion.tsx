@@ -52,7 +52,7 @@ export default function Medallion() {
               Extra arc length on both sides prevents letter clipping. */}
           <path
             id="medallion-top-arc"
-            d="M 21.65 87.5 A 125 125 0 0 1 238.35 87.5"
+            d="M 0 132 C 18 -18 242 -18 260 132"
             fill="none"
           />
         </defs>
