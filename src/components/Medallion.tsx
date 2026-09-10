@@ -33,68 +33,79 @@ export default function Medallion() {
   const curveText = 'Học hôm nay, bứt phá ngày mai';
 
   return (
-    <div
-      className="relative w-[130px] h-[130px] sm:w-[170px] sm:h-[170px] md:w-[200px] md:h-[200px] rounded-full flex items-center justify-center animate-fade-in"
-      style={{
-        background:
-          'radial-gradient(circle at 50% 42%, #FAC775 0%, #FDE4B0 52%, #FDF6E9 100%)',
-        border: '2px solid rgba(186, 117, 23, 0.55)',
-        boxShadow:
-          '0 20px 50px rgba(139, 30, 30, 0.35), 0 8px 20px rgba(0, 0, 0, 0.12)',
-        animationDelay: '0.8s',
-      }}
-    >
-      {/* Inner decorative ring */}
-      <div className="absolute inset-[6px] rounded-full border border-[#BA7517]/25" />
-
-      {/* Curved text along top arc — uses a viewBox that matches the medallion circle */}
+    <div className="relative animate-fade-in" style={{ animationDelay: '0.8s' }}>
+      {/*
+        Outer SVG: viewBox is 260×260 so there is ample room above the
+        medallion for the text arc. The medallion circle occupies the
+        lower portion (center 130,150, radius 100). The text arc uses a
+        larger radius (125) so it sits ~25 units outside the circle edge.
+      */}
       <svg
-        className="absolute inset-0 w-full h-full"
-        viewBox="0 0 200 200"
+        className="block w-[170px] h-[170px] sm:w-[220px] sm:h-[220px] md:w-[260px] md:h-[260px]"
+        viewBox="0 0 260 260"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          {/* Circular path for the top half — radius 78 centered at (100,100) */}
+          {/* Top-half arc with radius 125 centered at (130, 150).
+              Start angle ~210°, end angle ~330° → spans the full top.
+              Extra arc length on both sides prevents letter clipping. */}
           <path
             id="medallion-top-arc"
-            d="M 22 100 A 78 78 0 0 1 178 100"
+            d="M 21.65 87.5 A 125 125 0 0 1 238.35 87.5"
             fill="none"
           />
         </defs>
+
+        {/* Curved text — gold color with dark shadow for video-background legibility */}
         <text
-          fill="#FFFFFF"
+          fill="#FBC775"
           fontFamily="'Be Vietnam Pro', system-ui, sans-serif"
-          fontSize="11"
+          fontSize="13"
           fontWeight="600"
-          letterSpacing="2.2"
-          textTransform="uppercase"
+          letterSpacing="2"
+          style={{ textTransform: 'uppercase', filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))' }}
         >
           <textPath
             href="#medallion-top-arc"
             startOffset="50%"
             textAnchor="middle"
-            style={{ textTransform: 'uppercase' }}
           >
             {curveText.toUpperCase()}
           </textPath>
         </text>
       </svg>
 
-      {/* Calligraphy stamp image — hand-brushed 中 character */}
-      <img
-        src="https://res.cloudinary.com/qugyphlv/image/upload/v1789009070/dau-an-removebg-preview.png"
-        alt="Ấn triện chữ Trung"
-        className="relative w-[55%] h-[55%] object-contain drop-shadow-md"
-        style={{ marginTop: '6%' }}
-      />
+      {/* Medallion circle — positioned to overlap the lower portion of the SVG area */}
+      <div
+        className="absolute left-1/2 top-[57.7%] -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center"
+        style={{
+          width: '76.9%',
+          height: '76.9%',
+          background:
+            'radial-gradient(circle at 50% 42%, #FAC775 0%, #FDE4B0 52%, #FDF6E9 100%)',
+          border: '2px solid rgba(186, 117, 23, 0.55)',
+          boxShadow:
+            '0 20px 50px rgba(139, 30, 30, 0.35), 0 8px 20px rgba(0, 0, 0, 0.12)',
+        }}
+      >
+        {/* Inner decorative ring */}
+        <div className="absolute inset-[6px] rounded-full border border-[#BA7517]/25" />
 
-      {/* Cloud motifs — lower-right accent */}
-      <div className="absolute bottom-[14%] right-[10%] w-[32%] opacity-70">
-        <CloudMotif />
-      </div>
-      <div className="absolute bottom-[28%] right-[20%] w-[22%] opacity-50">
-        <CloudMotif />
+        {/* Calligraphy stamp image — hand-brushed 中 character */}
+        <img
+          src="https://res.cloudinary.com/qugyphlv/image/upload/v1789009070/dau-an-removebg-preview.png"
+          alt="Ấn triện chữ Trung"
+          className="relative w-[55%] h-[55%] object-contain drop-shadow-md"
+        />
+
+        {/* Cloud motifs — lower-right accent */}
+        <div className="absolute bottom-[14%] right-[10%] w-[32%] opacity-70">
+          <CloudMotif />
+        </div>
+        <div className="absolute bottom-[28%] right-[20%] w-[22%] opacity-50">
+          <CloudMotif />
+        </div>
       </div>
     </div>
   );
