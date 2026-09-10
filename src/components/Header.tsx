@@ -30,9 +30,10 @@ export default function Header() {
       }`}
     >
       <div className="px-5 sm:px-8 lg:px-16 py-3 sm:py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo + Name */}
-          <div className="flex items-center gap-3">
+        {/* 3-column grid: logo | centered nav | CTA */}
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center">
+          {/* Left: logo + name */}
+          <div className="flex items-center gap-3 justify-self-start">
             <img
               src="https://res.cloudinary.com/qugyphlv/image/upload/v1789008137/logo-removebg-preview.png"
               alt="ThanhMai HSK Logo"
@@ -48,8 +49,8 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
+          {/* Center: nav links + phone */}
+          <nav className="hidden lg:flex items-center gap-8 justify-self-center">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -60,8 +61,6 @@ export default function Header() {
                 <span className="absolute -bottom-1.5 left-0 w-0 h-px bg-[#FBC775] group-hover:w-full transition-all duration-400 ease-out" />
               </a>
             ))}
-
-            {/* Phone number */}
             <a
               href="tel:0398519485"
               className="flex items-center gap-2 font-sans text-sm text-white hover:text-[#FBC775] focus:text-[#FBC775] active:text-[#FBC775] transition-colors duration-200"
@@ -69,8 +68,10 @@ export default function Header() {
               <Phone className="w-4 h-4" />
               <span className="font-medium">0398519485</span>
             </a>
+          </nav>
 
-            {/* CTA button */}
+          {/* Right: CTA button */}
+          <div className="hidden lg:block justify-self-end">
             <a
               href="https://zalo.me/0398519485"
               target="_blank"
@@ -79,11 +80,11 @@ export default function Header() {
             >
               Học Thử Miễn Phí
             </a>
-          </nav>
+          </div>
 
-          {/* Mobile toggle */}
+          {/* Mobile toggle (right column on small screens) */}
           <button
-            className="lg:hidden text-brand-gold p-1"
+            className="lg:hidden text-brand-gold p-1 justify-self-end"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Mở menu"
           >

@@ -30,6 +30,8 @@ function CloudMotif({ className }: { className?: string }) {
 }
 
 export default function Medallion() {
+  const curveText = 'Học hôm nay, bứt phá ngày mai';
+
   return (
     <div
       className="relative w-[130px] h-[130px] sm:w-[170px] sm:h-[170px] md:w-[200px] md:h-[200px] rounded-full flex items-center justify-center animate-fade-in"
@@ -45,11 +47,46 @@ export default function Medallion() {
       {/* Inner decorative ring */}
       <div className="absolute inset-[6px] rounded-full border border-[#BA7517]/25" />
 
+      {/* Curved text along top arc — uses a viewBox that matches the medallion circle */}
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 200 200"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          {/* Circular path for the top half — radius 78 centered at (100,100) */}
+          <path
+            id="medallion-top-arc"
+            d="M 22 100 A 78 78 0 0 1 178 100"
+            fill="none"
+          />
+        </defs>
+        <text
+          fill="#FFFFFF"
+          fontFamily="'Be Vietnam Pro', system-ui, sans-serif"
+          fontSize="11"
+          fontWeight="600"
+          letterSpacing="2.2"
+          textTransform="uppercase"
+        >
+          <textPath
+            href="#medallion-top-arc"
+            startOffset="50%"
+            textAnchor="middle"
+            style={{ textTransform: 'uppercase' }}
+          >
+            {curveText.toUpperCase()}
+          </textPath>
+        </text>
+      </svg>
+
       {/* Calligraphy stamp image — hand-brushed 中 character */}
       <img
         src="https://res.cloudinary.com/qugyphlv/image/upload/v1789009070/dau-an-removebg-preview.png"
         alt="Ấn triện chữ Trung"
-        className="relative w-[62%] h-[62%] object-contain drop-shadow-md"
+        className="relative w-[55%] h-[55%] object-contain drop-shadow-md"
+        style={{ marginTop: '6%' }}
       />
 
       {/* Cloud motifs — lower-right accent */}
